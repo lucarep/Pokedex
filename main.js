@@ -1,9 +1,31 @@
+const colors = {
+    bug : '#99A799',
+    dark : '#707070',
+    dragon : "#C9CBFF",
+    electric : "#FFF1AF",
+    fairy : "#FFE2E2",
+    fighting : "#F6AE99",
+    flying : "#EFF8FF",
+    ghost : "#BAABDA",
+    grass : '#D3E4CD',
+    ground : "#FFE6BC",
+    ice : "#92A9BD",
+    normal : "#DAD0C2",
+    fire : '#FFC286',
+    poison : "#B97A95",
+    psychic : "#FAB7B7",
+    rock : "#C3B091",
+    steel : "#DDDDDD",
+    water : '#CDF0EA'
+};
+const main_types = Object.keys(colors);
+
 let poke_container = document.getElementById('poke-container');
 
 function createCard(pokemon){
     let pokeCard = document.createElement('div');
     pokeCard.classList.add('card');
-    pokeCard.style.width = "300px";
+    //pokeCard.style.width = "300px";
         let pokeSprite = document.createElement('img');
         pokeSprite.classList.add('card-img-top');
         pokeSprite.src = pokemon.sprites.front_default;
@@ -28,10 +50,22 @@ function createCard(pokemon){
             //console.log(pokeType);
             if (pokeType.length == 2) {
                 pokeTypeCard.innerHTML = "Types: " + pokeType[0] + " " + pokeType[1];
+                const color1 = colors[pokeType[0]];
+                const color2 = colors[pokeType[1]];
+                const orientation = 'to bottom right';
+                pokeCard.style.backgroundImage = 'linear-gradient('
+                + orientation + ', ' + color1 + ', ' + color2 + ')';
+                pokeCard.style.borderColor = color1;
             }
             else{
                 pokeTypeCard.innerHTML = "Type: " + pokeType;
+                const color = colors[pokeType[0]];
+                pokeCard.style.backgroundColor = color;
+                pokeCard.style.borderColor = color;
             }
+        // Colors
+        //const color = colors[pokeType[0]];
+        //pokeCard.style.backgroundColor = color;
             
     
     poke_container.appendChild(pokeCard);
@@ -51,15 +85,45 @@ const fetchPokemon = async id => {
     let res = await fetch(url);
     let pokemon = await res.json();
     createCard(pokemon);
-    console.log(pokemon);
+    //console.log(pokemon);
 }
 
 const fetchPokemons = async () => {
-    for (let i = 1; i < 800; i++) {
+    for (let i = 1; i < 899; i++) {
         await fetchPokemon(i);   
         if (i == 151) {
             let label = document.createElement('h3');
             label.innerHTML = "Johto (152-251)";
+            poke_container.appendChild(label);
+        }
+        if (i == 251) {
+            let label = document.createElement('h3');
+            label.innerHTML = "Hoenn (252-386)";
+            poke_container.appendChild(label);
+        }
+        if (i == 386) {
+            let label = document.createElement('h3');
+            label.innerHTML = "Sinnoh (387-493)";
+            poke_container.appendChild(label);
+        }
+        if (i == 493) {
+            let label = document.createElement('h3');
+            label.innerHTML = "Unima (494-649)";
+            poke_container.appendChild(label);
+        }
+        if (i == 649) {
+            let label = document.createElement('h3');
+            label.innerHTML = "Kalos (650-721)";
+            poke_container.appendChild(label);
+        }
+        if (i == 721) {
+            let label = document.createElement('h3');
+            label.innerHTML = "Alola (722-807)";
+            poke_container.appendChild(label);
+        }
+        if (i == 809) {
+            let label = document.createElement('h3');
+            label.innerHTML = "Galar (809-896)";
             poke_container.appendChild(label);
         }
     }

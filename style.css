@@ -1,9 +1,15 @@
+.card {
+  border-radius: 20px;
+  width: 200px;
+  margin: 10px;
+}
+
 .card-title {
     text-transform: capitalize;
 }
 
 .pokeID {
-  background-color: cadetblue;
+  background-color: rgba(255, 255, 255, 0.4);;
   border-radius: 20px;  
   padding: 5px 10px;
   text-align: center;
