@@ -1,9 +1,35 @@
+@font-face {
+  font-family: "Kollektif";
+  src: url("fonts/Kollektif.ttf");
+}
+
+@font-face {
+  font-family: "Kollektif-Bold";
+  src: url("fonts/Kollektif-Bold.ttf");
+}
+
+@font-face {
+  font-family: "Kollektif-Italic";
+  src: url("fonts/Kollektif-Italic.ttf");
+}
+
+@font-face {
+  font-family: "Kollektif-ItaBold";
+  src: url("fonts/Kollektif-BoldItalic.ttf");
+}
+
+body {
+  font-family: "Kollektif";
+  background-color: #faf3e0;
+}
+
 .card {
   border-radius: 20px;
   width: 200px;
   margin: 10px;
   transform-style: preserve-3d;
   transition: all 0.25s ease-in-out;
+  box-shadow: rgba(61, 60, 60, 0.45) 0px 25px 20px -20px;
 }
 
 .card:active {
@@ -30,7 +56,11 @@
 
 .card-title {
     text-transform: capitalize;
-    font-weight: bold;
+    font-family: "Kollektif-Bold";
+}
+
+.card-subtitle {
+  font-family: "Kollektif-Italic";
 }
 
 .pokeID {

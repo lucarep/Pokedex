@@ -35,7 +35,7 @@ function createCard(pokemon) {
   pokeCardBody.classList.add("card-body");
   //poke_container.appendChild(pokeCard);
   // Pokemon name
-  let pokeCardTitle = document.createElement("h5");
+  let pokeCardTitle = document.createElement("h4");
   pokeCardTitle.classList.add("card-title");
   const pokeName = pokemon.name;
   pokeCardTitle.innerHTML = pokeName;
@@ -117,37 +117,44 @@ const fetchPokemons = async () => {
   for (let i = 1; i < 899; i++) {
     await fetchPokemon(i);
     if (i == 151) {
-      let label = document.createElement("h3");
+      let label = document.createElement("h1");
+      label.style.fontFamily = "Kollektif-ItaBold";
       label.innerHTML = "Johto (152-251)";
       poke_container.appendChild(label);
     }
     if (i == 251) {
-      let label = document.createElement("h3");
+      let label = document.createElement("h1");
+      label.style.fontFamily = "Kollektif-ItaBold";
       label.innerHTML = "Hoenn (252-386)";
       poke_container.appendChild(label);
     }
     if (i == 386) {
-      let label = document.createElement("h3");
+      let label = document.createElement("h1");
+      label.style.fontFamily = "Kollektif-ItaBold";
       label.innerHTML = "Sinnoh (387-493)";
       poke_container.appendChild(label);
     }
     if (i == 493) {
-      let label = document.createElement("h3");
+      let label = document.createElement("h1");
+      label.style.fontFamily = "Kollektif-ItaBold";
       label.innerHTML = "Unima (494-649)";
       poke_container.appendChild(label);
     }
     if (i == 649) {
-      let label = document.createElement("h3");
+      let label = document.createElement("h1");
+      label.style.fontFamily = "Kollektif-ItaBold";
       label.innerHTML = "Kalos (650-721)";
       poke_container.appendChild(label);
     }
     if (i == 721) {
-      let label = document.createElement("h3");
+      let label = document.createElement("h1");
+      label.style.fontFamily = "Kollektif-ItaBold";
       label.innerHTML = "Alola (722-807)";
       poke_container.appendChild(label);
     }
     if (i == 809) {
-      let label = document.createElement("h3");
+      let label = document.createElement("h1");
+      label.style.fontFamily = "Kollektif-ItaBold";
       label.innerHTML = "Galar (809-896)";
       poke_container.appendChild(label);
     }
