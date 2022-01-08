@@ -2,14 +2,38 @@
   border-radius: 20px;
   width: 200px;
   margin: 10px;
+  transform-style: preserve-3d;
+  transition: all 0.25s ease-in-out;
+}
+
+.card:active {
+  transform: rotateY(180deg);
+}
+
+.card:hover {
+  cursor: pointer;
+}
+
+.front {
+  backface-visibility: hidden;
+  /* height: 100%; */
+  overflow: hidden;
+  width: 100%;
+}
+
+.back {
+  position: absolute;
+  top: 50px;
+  transform: rotateY(180deg);
 }
 
 .card-title {
     text-transform: capitalize;
+    font-weight: bold;
 }
 
 .pokeID {
-  background-color: rgba(255, 255, 255, 0.4);;
+  background-color: rgba(0, 0, 0, 0.25);;
   border-radius: 20px;  
   padding: 5px 10px;
   text-align: center;

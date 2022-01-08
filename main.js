@@ -25,13 +25,15 @@ let poke_container = document.getElementById('poke-container');
 function createCard(pokemon){
     let pokeCard = document.createElement('div');
     pokeCard.classList.add('card');
-    //pokeCard.style.width = "300px";
+    // Front
+    let pokeCardF = document.createElement('div');
+    pokeCardF.classList.add('front');
         let pokeSprite = document.createElement('img');
         pokeSprite.classList.add('card-img-top');
         pokeSprite.src = pokemon.sprites.front_default;
         let pokeCardBody = document.createElement('div');
         pokeCardBody.classList.add('card-body');
-        poke_container.appendChild(pokeCard);
+        //poke_container.appendChild(pokeCard);
             // Pokemon name
             let pokeCardTitle = document.createElement('h5');
             pokeCardTitle.classList.add('card-title');
@@ -63,17 +65,32 @@ function createCard(pokemon){
                 pokeCard.style.backgroundColor = color;
                 pokeCard.style.borderColor = color;
             }
-        // Colors
-        //const color = colors[pokeType[0]];
-        //pokeCard.style.backgroundColor = color;
-            
-    
+    // Back
+    //stat value [0 ... 5]
+    //console.log(pokemon.stats[0].base_stat);
+    // stat name [0 ... 5]
+    //console.log(pokemon.stats[0].stat.name);
+    let pokeCardB = document.createElement('div');
+    pokeCardB.classList.add('back');
+
+
     poke_container.appendChild(pokeCard);
-    pokeCard.appendChild(pokeSprite);
-    pokeCard.appendChild(pokeCardBody);
+    pokeCard.appendChild(pokeCardF);
+    // Front
+    pokeCardF.appendChild(pokeSprite);
+    pokeCardF.appendChild(pokeCardBody);
     pokeCardBody.appendChild(pokeCardID);
     pokeCardBody.appendChild(pokeCardTitle);
     pokeCardBody.appendChild(pokeTypeCard);
+    pokeCard.appendChild(pokeCardB);
+    // Back
+    for (let i = 0; i < pokemon.stats.length; i++) {
+        let test = document.createElement('h5');
+        test.classList.add('card-subtitle');
+        test.innerHTML = pokemon.stats[i].stat.name + ":  "
+        + pokemon.stats[i].base_stat;
+        pokeCardB.appendChild(test);
+    }
     
     
     
