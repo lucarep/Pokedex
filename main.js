@@ -1,5 +1,4 @@
 let poke_container = document.getElementById('poke-container');
-let pokemon_number = 151;
 
 function createCard(pokemon){
     let pokeCard = document.createElement('div');
@@ -19,14 +18,28 @@ function createCard(pokemon){
             // Pokemon ID
             let pokeCardID = document.createElement('h6');
             pokeCardID.classList.add('card-subtitle');
-            const pokeID = pokemon.id;
-            pokeCardID.innerHTML = pokeID;
+            pokeCardID.classList.add('pokeID');
+            const pokeID = pokemon.id.toString().padStart(3,'0');
+            pokeCardID.innerHTML = "#" + pokeID;
+            // Pokemon Type
+            let pokeTypeCard = document.createElement('h6');
+            pokeTypeCard.classList.add('card-subtitle');
+            const pokeType = pokemon.types.map(el => el.type.name);
+            //console.log(pokeType);
+            if (pokeType.length == 2) {
+                pokeTypeCard.innerHTML = "Types: " + pokeType[0] + " " + pokeType[1];
+            }
+            else{
+                pokeTypeCard.innerHTML = "Type: " + pokeType;
+            }
+            
     
     poke_container.appendChild(pokeCard);
     pokeCard.appendChild(pokeSprite);
     pokeCard.appendChild(pokeCardBody);
-    pokeCardBody.appendChild(pokeCardTitle);
     pokeCardBody.appendChild(pokeCardID);
+    pokeCardBody.appendChild(pokeCardTitle);
+    pokeCardBody.appendChild(pokeTypeCard);
     
     
     
@@ -42,8 +55,13 @@ const fetchPokemon = async id => {
 }
 
 const fetchPokemons = async () => {
-    for (let i = 1; i < pokemon_number; i++) {
+    for (let i = 1; i < 800; i++) {
         await fetchPokemon(i);   
+        if (i == 151) {
+            let label = document.createElement('h3');
+            label.innerHTML = "Johto (152-251)";
+            poke_container.appendChild(label);
+        }
     }
 }
 

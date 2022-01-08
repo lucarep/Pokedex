@@ -1,3 +1,17 @@
 .card-title {
     text-transform: capitalize;
 }
+
+.pokeID {
+  background-color: cadetblue;
+  border-radius: 20px;  
+  padding: 5px 10px;
+  text-align: center;
+  font-size: 16px;
+}
+
+.pokeType{
+    background-color: cadetblue;
+    border-radius: 20px;  
+    padding: 5px 10px;
+}
