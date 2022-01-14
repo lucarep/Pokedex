@@ -63,7 +63,7 @@ function createCard(pokemon) {
   pokeCardBody.classList.add("card-body");
   //poke_container.appendChild(pokeCard);
   // Pokemon name
-  let pokeCardTitle = document.createElement("h4");
+  let pokeCardTitle = document.createElement("h5");
   pokeCardTitle.classList.add("card-title");
   const pokeName = pokemon.name;
   pokeCardTitle.innerHTML = pokeName;
@@ -85,12 +85,12 @@ function createCard(pokemon) {
     const orientation = "to bottom right";
     pokeCard.style.backgroundImage =
       "linear-gradient(" + orientation + ", " + color1 + ", " + color2 + ")";
-    pokeCard.style.borderColor = color1;
+    pokeCard.style.border = "2px solid #5b6467";
   } else {
     pokeTypeCard.innerHTML = "Type: " + pokeType;
     const color = colors[pokeType[0]];
     pokeCard.style.backgroundColor = color;
-    pokeCard.style.borderColor = color;
+    pokeCard.style.border = "2px solid #5b6467";
   }
   let pokeCardB = document.createElement("div");
   pokeCardB.classList.add("back");

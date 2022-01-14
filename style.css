@@ -20,7 +20,8 @@
 
 body {
   font-family: "Kollektif";
-  background-color: #faf3e0;
+  background-color: #f9d29d;
+  background: linear-gradient(to left, #f9d29d 0%, #ffd8cb 74%);
 }
 
 .card {
@@ -79,5 +80,17 @@ body {
 
 .form-control {
   border-radius: 40px;
-  border: 2px solid rgba(0, 0, 0, 0.75);
+  border: 2px solid #5b6467;
 }
+
+#searchBar {
+  background: transparent;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+#searchBar:focus {
+  border: 2px solid rgba(0, 0, 0, 1);
+}
+
+
