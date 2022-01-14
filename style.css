@@ -60,26 +60,31 @@ body {
 }
 
 .card-title {
-    text-transform: capitalize;
-    font-family: "Kollektif-Bold";
+  text-transform: capitalize;
+  font-family: "Kollektif-Bold";
 }
 
 .card-subtitle {
   font-family: "Kollektif-Italic";
 }
 
+.moveRow {
+  border-radius: 40px;
+  padding: 20px;
+  margin: 10px;
+}
 .pokeID {
-  background-color: rgba(0, 0, 0, 0.25);;
-  border-radius: 20px;  
+  background-color: rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
   padding: 5px 10px;
   text-align: center;
   font-size: 16px;
 }
 
-.pokeType{
-    background-color: cadetblue;
-    border-radius: 20px;  
-    padding: 5px 10px;
+.pokeType {
+  background-color: cadetblue;
+  border-radius: 20px;
+  padding: 5px 10px;
 }
 
 .form-control {
@@ -96,5 +101,3 @@ body {
 #searchBar:focus {
   border: 2px solid rgba(0, 0, 0, 1);
 }
-
-
