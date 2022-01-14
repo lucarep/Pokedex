@@ -19,8 +19,36 @@ const colors = {
   water: "#CDF0EA",
 };
 const main_types = Object.keys(colors);
-
 let poke_container = document.getElementById("poke-container");
+let searchBar = document.getElementById("searchBar");
+let pokeList = [];
+let flag = false;
+
+
+searchBar.addEventListener('keyup',(e) =>{
+  while (poke_container.firstChild) {
+    poke_container.removeChild(poke_container.firstChild);
+  }
+  let searchString = e.target.value.toLowerCase();
+  let filteredPokemons = pokeList.filter((pokemon) =>{
+    if (pokemon.types.length == 2) {
+      return (
+        pokemon.name.includes(searchString) ||
+        pokemon.types[0].type.name.includes(searchString) ||
+        pokemon.types[1].type.name.includes(searchString)
+      );
+    }
+    else {
+      return (
+        pokemon.name.includes(searchString) ||
+        pokemon.types[0].type.name.includes(searchString)
+      );
+    }
+  });
+  filteredPokemons.forEach(mon => {
+    createCard(mon);
+  });
+});
 
 function createCard(pokemon) {
   let pokeCard = document.createElement("div");
@@ -64,11 +92,6 @@ function createCard(pokemon) {
     pokeCard.style.backgroundColor = color;
     pokeCard.style.borderColor = color;
   }
-  // Back
-  //stat value [0 ... 5]
-  //console.log(pokemon.stats[0].base_stat);
-  // stat name [0 ... 5]
-  //console.log(pokemon.stats[0].stat.name);
   let pokeCardB = document.createElement("div");
   pokeCardB.classList.add("back");
 
@@ -110,55 +133,19 @@ const fetchPokemon = async (id) => {
   let res = await fetch(url);
   let pokemon = await res.json();
   createCard(pokemon);
-  //console.log(pokemon);
+  pokeList.push(pokemon);
+  console.log(pokemon.types[0].type.name)
 };
 
 const fetchPokemons = async () => {
   for (let i = 1; i < 899; i++) {
     await fetchPokemon(i);
-    if (i == 151) {
-      let label = document.createElement("h1");
-      label.style.fontFamily = "Kollektif-ItaBold";
-      label.innerHTML = "Johto (152-251)";
-      poke_container.appendChild(label);
-    }
-    if (i == 251) {
-      let label = document.createElement("h1");
-      label.style.fontFamily = "Kollektif-ItaBold";
-      label.innerHTML = "Hoenn (252-386)";
-      poke_container.appendChild(label);
-    }
-    if (i == 386) {
-      let label = document.createElement("h1");
-      label.style.fontFamily = "Kollektif-ItaBold";
-      label.innerHTML = "Sinnoh (387-493)";
-      poke_container.appendChild(label);
-    }
-    if (i == 493) {
-      let label = document.createElement("h1");
-      label.style.fontFamily = "Kollektif-ItaBold";
-      label.innerHTML = "Unima (494-649)";
-      poke_container.appendChild(label);
-    }
-    if (i == 649) {
-      let label = document.createElement("h1");
-      label.style.fontFamily = "Kollektif-ItaBold";
-      label.innerHTML = "Kalos (650-721)";
-      poke_container.appendChild(label);
-    }
-    if (i == 721) {
-      let label = document.createElement("h1");
-      label.style.fontFamily = "Kollektif-ItaBold";
-      label.innerHTML = "Alola (722-807)";
-      poke_container.appendChild(label);
-    }
-    if (i == 809) {
-      let label = document.createElement("h1");
-      label.style.fontFamily = "Kollektif-ItaBold";
-      label.innerHTML = "Galar (809-896)";
-      poke_container.appendChild(label);
-    }
   }
+  flag = true;
 };
 
 fetchPokemons();
+
+
+
+
