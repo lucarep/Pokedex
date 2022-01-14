@@ -24,6 +24,10 @@ body {
   background: linear-gradient(to left, #f9d29d 0%, #ffd8cb 74%);
 }
 
+.alert {
+  border-radius: 40px;
+}
+
 .card {
   border-radius: 20px;
   width: 200px;

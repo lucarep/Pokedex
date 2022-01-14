@@ -18,36 +18,82 @@ const colors = {
   steel: "#DDDDDD",
   water: "#CDF0EA",
 };
+
+const secondaryColors = {
+  bug: "#064635",
+  dark: "#160040",
+  dragon: "#6E3CBC",
+  electric: "#FFCE45",
+  fairy: "#FF87CA",
+  fighting: "#FF8243",
+  flying: "#2F86A6",
+  ghost: "#544179",
+  grass: "#146356",
+  ground: "#E5890A",
+  ice: "#8AB6D6",
+  normal: "#476072",
+  fire: "#D9534F",
+  poison: "#4C0070",
+  psychic: "#A03C78",
+  rock: "#9D5C0D",
+  steel: "#2C394B",
+  water: "#22577E",
+};
+
 const main_types = Object.keys(colors);
 let poke_container = document.getElementById("poke-container");
+let alert_container = document.getElementById("alert-container");
 let searchBar = document.getElementById("searchBar");
 let pokeList = [];
 let flag = false;
 
-
-searchBar.addEventListener('keyup',(e) =>{
-  while (poke_container.firstChild) {
-    poke_container.removeChild(poke_container.firstChild);
+searchBar.addEventListener("keyup", (e) => {
+  if (flag == true) {
+    while (alert_container.firstChild) {
+      alert_container.removeChild(alert_container.firstChild);
+    }
+    while (poke_container.firstChild) {
+      poke_container.removeChild(poke_container.firstChild);
+    }
+    let searchString = e.target.value.toLowerCase();
+    let filteredPokemons = pokeList.filter((pokemon) => {
+      if (pokemon.types.length == 2) {
+        return (
+          pokemon.name.includes(searchString) ||
+          pokemon.types[0].type.name.includes(searchString) ||
+          pokemon.types[1].type.name.includes(searchString)
+        );
+      } else {
+        return (
+          pokemon.name.includes(searchString) ||
+          pokemon.types[0].type.name.includes(searchString)
+        );
+      }
+    });
+    filteredPokemons.forEach((mon) => {
+      createCard(mon);
+    });
+  } else {
+    while (alert_container.firstChild) {
+      alert_container.removeChild(alert_container.firstChild);
+    }
+    let alert = document.createElement("div");
+    alert.classList.add(
+      "alert",
+      "alert-warning",
+      "alert-dismissible",
+      "fade",
+      "show"
+    );
+    alert.innerHTML =
+      "<strong>Warning ! </strong>Still loading Pokemons data, try again soon.";
+    let dismiss = document.createElement("button");
+    dismiss.classList.add("btn-close");
+    dismiss.setAttribute("data-bs-dismiss", "alert");
+    dismiss.setAttribute("aria-label", "Close");
+    alert_container.prepend(alert);
+    alert.append(dismiss);
   }
-  let searchString = e.target.value.toLowerCase();
-  let filteredPokemons = pokeList.filter((pokemon) =>{
-    if (pokemon.types.length == 2) {
-      return (
-        pokemon.name.includes(searchString) ||
-        pokemon.types[0].type.name.includes(searchString) ||
-        pokemon.types[1].type.name.includes(searchString)
-      );
-    }
-    else {
-      return (
-        pokemon.name.includes(searchString) ||
-        pokemon.types[0].type.name.includes(searchString)
-      );
-    }
-  });
-  filteredPokemons.forEach(mon => {
-    createCard(mon);
-  });
 });
 
 function createCard(pokemon) {
@@ -61,7 +107,6 @@ function createCard(pokemon) {
   pokeSprite.src = pokemon.sprites.front_default;
   let pokeCardBody = document.createElement("div");
   pokeCardBody.classList.add("card-body");
-  //poke_container.appendChild(pokeCard);
   // Pokemon name
   let pokeCardTitle = document.createElement("h5");
   pokeCardTitle.classList.add("card-title");
@@ -119,8 +164,8 @@ function createCard(pokemon) {
     progressBar.setAttribute("aria-valuemin", 0);
     progressBar.setAttribute("aria-valuemax", 100);
     progressBar.textContent = pokemon.stats[i].base_stat;
-    //progressBar.style.color = "#000000";
-    //progressBar.style.backgroundColor = "#FFFFFF";
+    progressBar.style.backgroundColor =
+      secondaryColors[pokemon.types[0].type.name];
     pokeCardB.appendChild(name);
     pokeCardB.appendChild(progress);
     progress.appendChild(progressBar);
@@ -134,7 +179,6 @@ const fetchPokemon = async (id) => {
   let pokemon = await res.json();
   createCard(pokemon);
   pokeList.push(pokemon);
-  console.log(pokemon.types[0].type.name)
 };
 
 const fetchPokemons = async () => {
@@ -145,7 +189,3 @@ const fetchPokemons = async () => {
 };
 
 fetchPokemons();
-
-
-
-
