@@ -61,7 +61,7 @@ searchBar.addEventListener("keyup", (e) => {
 
 function createMove(move) {
   let moveDiv = document.createElement("div");
-  moveDiv.classList.add("row", "moveRow");
+  moveDiv.classList.add("row", "moveRow", "moveDiv");
   moveDiv.style.backgroundColor = colors[move.type.name];
   // Name and type
   let nameCol = document.createElement("div");

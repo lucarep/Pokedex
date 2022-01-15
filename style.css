@@ -37,6 +37,10 @@ body {
   box-shadow: rgba(61, 60, 60, 0.45) 0px 25px 20px -20px;
 }
 
+.moveDiv {
+  box-shadow: rgba(61, 60, 60, 0.45) 0px 25px 20px -20px;
+}
+
 .card:active {
   transform: rotateY(180deg);
 }
@@ -92,12 +96,14 @@ body {
   border: 2px solid #5b6467;
 }
 
-#searchBar {
+#searchBar,
+#searchMoveBar {
   background: transparent;
   margin-top: 25px;
   margin-bottom: 25px;
 }
 
-#searchBar:focus {
+#searchBar:focus,
+#searchMoveBar:focus {
   border: 2px solid rgba(0, 0, 0, 1);
 }
