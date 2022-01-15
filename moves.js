@@ -41,11 +41,23 @@ const secondaryColors = {
 };
 
 let move_container = document.getElementById("move-container");
-let alert_container = document.getElementById("alert-container");
 let searchBar = document.getElementById("searchMoveBar");
 let moveList = [];
-let flag = false;
 
+searchBar.addEventListener("keyup", (e) => {
+  while (move_container.firstChild) {
+    move_container.removeChild(move_container.firstChild);
+  }
+  let searchString = e.target.value.toLowerCase();
+  let filteredMoves = moveList.filter((move) => {
+    return (
+      move.name.includes(searchString) || move.type.name.includes(searchString)
+    );
+  });
+  filteredMoves.forEach((move) => {
+    createMove(move);
+  });
+});
 
 function createMove(move) {
   let moveDiv = document.createElement("div");
@@ -130,7 +142,6 @@ const fetchMoves = async () => {
   for (let i = 1; i < 500; i++) {
     await fetchMove(i);
   }
-  flag = true;
 };
 
 fetchMoves();
